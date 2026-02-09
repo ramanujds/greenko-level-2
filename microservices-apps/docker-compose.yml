@@ -15,7 +15,7 @@ services:
   asset-service:
     ports:
       - "8081:8080"
-    image: asset-service
+    image: ram1uj/asset-service
     environment:
       SPRING_PROFILES_ACTIVE: dev
       MYSQL_HOST: mysql
@@ -32,7 +32,7 @@ services:
   telemetry-service:
     ports:
       - "8082:8080"
-    image: telemetry-service
+    image: ram1uj/telemetry-service
     networks:
       asset-telemetry-network:
     environment:
