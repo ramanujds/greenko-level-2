@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "assetClient",
-        url = "${ASSET_SERVICE_URL:http://localhost:8081}")
+        url = "${ASSET_SERVICE_URL:http://localhost:8080}")
 public interface AssetServiceClient {
 
     @GetMapping("/api/assets/{assetId}")
