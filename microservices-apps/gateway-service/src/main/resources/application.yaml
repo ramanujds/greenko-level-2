@@ -10,12 +10,12 @@ spring:
             - id: asset-service
               uri: ${ASSET_SERVICE_URL:http://localhost:8081}
               predicates:
-                - Path=/api/assets/**
+                - Path=/api/assets/**, /web/assets/**
 
 
             - id: telemetry-service
               uri: ${TELEMETRY_SERVICE_URL:http://localhost:8082}
               predicates:
-                - Path=/swagger-ui/**, /v3/api-docs/**, /actuator/**, /api/telemetry/**
+                - Path=/api/telemetry/**, /web/telemetry/**
 
 
