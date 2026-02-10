@@ -6,4 +6,12 @@ spring:
   profiles:
     active: dev
 
+  config:
+    import: optional:configserver:http://${CONFIG_SERVER_HOST:localhost}:${CONFIG_SERVER_PORT:8888}
 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
