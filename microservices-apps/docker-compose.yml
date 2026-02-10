@@ -4,20 +4,20 @@ networks:
   asset-telemetry-network:
 
 services:
-  mysql:
-    image: mysql:latest
-    networks:
-      asset-telemetry-network:
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: greenko_db
+#  mysql:
+#    image: mysql:latest
+#    networks:
+#      asset-telemetry-network:
+#    environment:
+#      MYSQL_ROOT_PASSWORD: password
+#      MYSQL_DATABASE: greenko_db
 
   asset-service:
     ports:
-      - "8081-8090:8080"
-    image: ram1uj/asset-service
+      - "8081:8080"
+    image: asset-service
     environment:
-      SPRING_PROFILES_ACTIVE: prod
+      SPRING_PROFILES_ACTIVE: dev
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
       MYSQL_USER: root
@@ -25,16 +25,26 @@ services:
       MYSQL_DATABASE: greenko_db
     networks:
       asset-telemetry-network:
-    depends_on:
-      - mysql
+#    depends_on:
+#      - mysql
     restart: always
 
   telemetry-service:
     ports:
-      - "8091-8100:8080"
-    image: ram1uj/telemetry-service
+      - "8082:8080"
+    image: telemetry-service
     networks:
       asset-telemetry-network:
     environment:
       ASSET_SERVICE_URL: http://asset-service:8080
+
+  gateway-service:
+    ports:
+      - "8080:8080"
+    image: gateway-service
+    networks:
+      asset-telemetry-network:
+    environment:
+      ASSET_SERVICE_URL: http://asset-service:8080
+      TELEMETRY_SERVICE_URL: http://telemetry-service:8080
 

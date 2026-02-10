@@ -10,12 +10,37 @@ spring:
             - id: asset-service
               uri: ${ASSET_SERVICE_URL:http://localhost:8081}
               predicates:
-                - Path=/api/assets/**, /web/assets/**
+                - Path=/api/assets/**
+              filters:
+#                - StripPrefix=2
 
+            - id: asset-service-web
+              uri: ${ASSET_SERVICE_URL:http://localhost:8081}
+              predicates:
+                - Path=/assets/**
+              filters:
+                - StripPrefix=1
 
             - id: telemetry-service
               uri: ${TELEMETRY_SERVICE_URL:http://localhost:8082}
               predicates:
-                - Path=/api/telemetry/**, /web/telemetry/**
+                - Path=/api/telemetry/**
+              filters:
+#                - StripPrefix=2
 
+            - id: telemetry-service-web
+              uri: ${TELEMETRY_SERVICE_URL:http://localhost:8082}
+              predicates:
+                - Path=/telemetry/**
+              filters:
+                - StripPrefix=1
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: Asset Service
+        url: /assets/v3/api-docs
+      - name: Telemetry Service
+        url: /telemetry/v3/api-docs
 
