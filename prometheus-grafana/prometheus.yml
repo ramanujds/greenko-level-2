@@ -10,3 +10,11 @@ scrape_configs:
     static_configs:
       - targets: [ 'docker-stats-exporter:9487' ]
 
+  - job_name: 'asset-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - labels:
+          service: 'asset-service'
+        targets: [ 'asset-service:8080' ]
+
+

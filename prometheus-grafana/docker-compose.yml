@@ -50,3 +50,10 @@ services:
       - prometheus-grafana-network
     volumes:
       - grafana-data:/var/lib/grafana
+
+  asset-service:
+    ports:
+      - "8081:8080"
+    image: asset-service
+    networks:
+     - prometheus-grafana-network

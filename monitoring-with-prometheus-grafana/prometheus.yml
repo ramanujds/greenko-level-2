@@ -18,11 +18,13 @@ scrape_configs:
         labels:
           service: 'config-service'
 
-  - job_name: 'cadvisor'
-    static_configs:
-      - targets: [ 'cadvisor:8080' ]
 
   - job_name: 'docker'
     static_configs:
       - targets: [ 'docker-stats-exporter:9487' ]
+
+  - job_name: 'zipkin'
+    metrics_path: '/prometheus'
+    static_configs:
+      - targets: [ 'zipkin:9411' ]
 
