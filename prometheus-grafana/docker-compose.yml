@@ -1,0 +1,52 @@
+networks:
+  prometheus-grafana-network:
+
+volumes:
+  grafana-data:
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9091:9090"
+    networks:
+      - prometheus-grafana-network
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    ports:
+      - "8085:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro # Required to access Docker metadata
+      - /dev/disk/:/dev/disk:ro # Optional: for disk metrics
+    privileged: true # Might be needed for full access to host metrics
+    networks:
+      - prometheus-grafana-network
+
+  docker-stats-exporter:
+    image: wywywywy/docker_stats_exporter
+    ports:
+      - "9487:9487"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+        - prometheus-grafana-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - prometheus-grafana-network
+    volumes:
+      - grafana-data:/var/lib/grafana

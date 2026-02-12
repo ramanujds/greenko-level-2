@@ -23,9 +23,12 @@ management:
     health:
       probes:
         enabled: true
+
   endpoints:
     web:
       exposure:
         include: health, refresh, env, beans, loggers, metrics, prometheus, info
 
-
+  metrics:
+    tags:
+      application: ${spring.application.name}

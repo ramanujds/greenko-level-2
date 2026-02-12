@@ -32,6 +32,10 @@ management:
       exposure:
         include: health, refresh, env, beans, loggers, metrics, prometheus, info
 
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
 logging:
   pattern:
     level: "%5p [traceId=%X{traceId} spanId=%X{spanId}]"

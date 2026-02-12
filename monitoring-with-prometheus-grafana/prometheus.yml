@@ -1,0 +1,28 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'spring-microservices'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'asset-service:8080' ]
+        labels:
+          service: 'asset-service'
+      - targets: [ 'telemetry-service:8080' ]
+        labels:
+          service: 'telemetry-service'
+      - targets: [ 'gateway-service:8080' ]
+        labels:
+          service: 'gateway-service'
+      - targets: [ 'config-server:8888' ]
+        labels:
+          service: 'config-service'
+
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: [ 'cadvisor:8080' ]
+
+  - job_name: 'docker'
+    static_configs:
+      - targets: [ 'docker-stats-exporter:9487' ]
+
