@@ -1,6 +1,13 @@
+logging:
+  level:
+    root: INFO
+    com.greenko.assetservice.api: DEBUG
+
+
 spring:
   application:
     name: asset-service
+
 
 
   flyway:
