@@ -4,6 +4,7 @@ import com.greenko.authapp.repository.AppUserRepository;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,37 +33,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         var user = appUserRepository.findByUsername(username).orElseThrow(
                     () -> new UsernameNotFoundException("User not found with username: " + username));
 
-        return new UserDetailsImpl(user.getUsername(), user.getPassword(), user.getRole());
+//        return new UserDetailsImpl(user.getUsername(), user.getPassword(), user.getRole());
+
+        return User.builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .roles(user.getRole().toUpperCase())
+                .build();
     }
 
 
 }
 
-class UserDetailsImpl implements UserDetails {
 
-    private final String username;
-    private final String password;
-    private String role;
-
-    public UserDetailsImpl(String username, String password, String role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
-    }
-
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_"+role.toUpperCase()));
-    }
-
-    @Override
-    public @Nullable String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-}
