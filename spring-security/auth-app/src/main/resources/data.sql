@@ -1,0 +1,2 @@
+INSERT INTO users (username, password, role) VALUES ('user', '$2a$12$OtjzAYwL5UJyTVfEz9fFYODYzD5HrK2.GpHzyCjx909GEjPRbqPDm', 'USER');
+INSERT INTO users (username, password, role) VALUES ('admin', '$2a$12$WgTr8oYALXodzpr/5NOpuuZfPijqrk94efRI6q2IxRcBJjy7FTQHm', 'ADMIN');
