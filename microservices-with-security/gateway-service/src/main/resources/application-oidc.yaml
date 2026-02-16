@@ -1,0 +1,20 @@
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${OIDC_ISSUER_URI:http://localhost:8080/realms/greenko}
+        registration:
+          greenko-gateway:
+            provider: keycloak
+            client-id: ${OIDC_CLIENT_ID:gateway-service}
+            client-secret: ${OIDC_CLIENT_SECRET:change-me}
+            scope: openid, profile, email
+
+      resourceserver:
+        jwt:
+          issuer-uri: ${OIDC_ISSUER_URI:http://localhost:8080/realms/greenko}
+
+
+

@@ -1,0 +1,31 @@
+2026-02-15 17:15:32 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of method jwtSecurityFilterChain in org.springframework.boot.security.oauth2.server.resource.autoconfigure.servlet.OAuth2ResourceServerJwtConfiguration$OAuth2SecurityFilterChainConfiguration required a bean of type 'org.springframework.security.config.annotation.web.builders.HttpSecurity' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.config.annotation.web.builders.HttpSecurity' in your configuration.
+
+2026-02-15 17:43:07 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of method jwtSecurityFilterChain in org.springframework.boot.security.oauth2.server.resource.autoconfigure.servlet.OAuth2ResourceServerJwtConfiguration$OAuth2SecurityFilterChainConfiguration required a bean of type 'org.springframework.security.config.annotation.web.builders.HttpSecurity' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.config.annotation.web.builders.HttpSecurity' in your configuration.
+
+2026-02-15 18:43:00 [main] ERROR c.g.assetservice.api.AssetController - Asset with id 123 not found

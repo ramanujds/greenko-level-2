@@ -13,3 +13,8 @@ spring:
         format_sql: true
         hbm2ddl:
           auto: update
+
+
+auth:
+  jwtExpirationMs: 20000000
+  jwtSecret: changeit1234567890changeit1234567890changeit1234567890changeit1234567890changeit1234567890
