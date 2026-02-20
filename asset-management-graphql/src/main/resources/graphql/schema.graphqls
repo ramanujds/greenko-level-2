@@ -1,0 +1,57 @@
+type Query {
+    # Fetch all assets
+    getAllAssets: [Asset!]!
+
+    # Fetch asset by ID
+    getAssetById(assetId: String!): Asset
+
+    # Fetch assets by exact name
+    getAssetsByName(assetName: String!): [Asset!]!
+
+    # Search assets by name (case-insensitive, contains)
+    searchAssets(searchTerm: String!): [Asset!]!
+
+    # Fetch assets by type
+    getAssetsByType(type: String!): [Asset!]!
+
+    # Fetch assets by status
+    getAssetsByStatus(status: String!): [Asset!]!
+
+    # Fetch assets by location
+    getAssetsByLocation(location: String!): [Asset!]!
+}
+
+type Mutation {
+    # Create a new asset
+    createAsset(
+        assetId: String!,
+        assetName: String!,
+        type: String!,
+        installedDate: String!,
+        location: String!,
+        status: String!
+    ): Asset!
+
+    # Update an existing asset
+    updateAsset(
+        assetId: String!,
+        assetName: String!,
+        type: String!,
+        installedDate: String!,
+        location: String!,
+        status: String!
+    ): Asset
+
+    # Delete an asset
+    deleteAsset(assetId: String!): Boolean!
+}
+
+type Asset {
+    assetId: String!
+    assetName: String
+    type: String
+    installedDate: String
+    location: String
+    status: String
+}
+
