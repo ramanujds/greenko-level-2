@@ -3,6 +3,8 @@ package com.greenko.assetservice.api;
 import com.greenko.assetservice.exception.AssetNotFoundException;
 import com.greenko.assetservice.model.Asset;
 import com.greenko.assetservice.repository.AssetRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +35,10 @@ public class AssetController {
         this.assetRepository = assetRepository;
     }
 
-    @PostMapping
+    @PostMapping(
+            produces = "application/json, application/xml",
+            consumes = "application/json, application/xml"
+    )
     public Asset registerAsset(@RequestBody Asset asset){
         asset.setAssetId(UUID.randomUUID().toString());
         return assetRepository.save(asset);
@@ -46,6 +51,15 @@ public class AssetController {
         log.info("Number of assets retrieved: {}", assets.size());
         return assets;
     }
+
+
+    @Operation(summary = "Get asset by id",
+    description = "Get asset by id",
+    tags = {"Asset"},
+    responses = {
+            @ApiResponse(responseCode = "200", description = "Asset found")
+    })
+
 
     @GetMapping("/{assetId}")
     public Asset getAssetById(@PathVariable String assetId) {

@@ -1,5 +1,6 @@
 package com.greenko.assetservice.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -14,7 +15,9 @@ import java.time.LocalDate;
 public class Asset {
 
     @Id
+    @Schema(description = "Asset Id", example = "AA2100000")
     private String assetId;
+    @Schema(description = "Asset Name", example = "Asset 1")
     private String assetName;
     private String type;
     private LocalDate installedDate;
