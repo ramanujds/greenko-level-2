@@ -1,3 +1,13 @@
+type Asset {
+    assetId: String!
+    assetName: String
+    type: String
+    installedDate: String
+    location: String
+    status: String
+}
+
+
 type Query {
     # Fetch all assets
     getAllAssets: [Asset!]!
@@ -46,12 +56,5 @@ type Mutation {
     deleteAsset(assetId: String!): Boolean!
 }
 
-type Asset {
-    assetId: String!
-    assetName: String
-    type: String
-    installedDate: String
-    location: String
-    status: String
-}
+
 
