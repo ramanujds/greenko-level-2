@@ -1,0 +1,11 @@
+<!-- <app-asset-card [asset]="assets[0]"></app-asset-card> -->
+<div class="row"> 
+@for (asset of assets; track asset.assetId) {
+
+    <div class="col-4">
+        <app-asset-card [asset]="asset"></app-asset-card>
+    </div>
+
+ }
+</div>
+

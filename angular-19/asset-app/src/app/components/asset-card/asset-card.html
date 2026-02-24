@@ -1,0 +1,18 @@
+<!-- Asset {
+  assetId: string;
+  assetName: string;
+  type: string;
+  installedDate: Date;
+  location: string;
+} -->
+
+<!-- create a bootstrap card to display -->
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{asset?.assetName}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{asset?.type}}</h6>
+    <p class="card-text">Installed on: {{asset?.installedDate | date}}</p>
+    <p class="card-text">Location: {{asset?.location}}</p>
+    <button class="btn btn-danger" (click)="deleteAsset(asset?.assetId)">Delete</button>
+  </div>
+</div>

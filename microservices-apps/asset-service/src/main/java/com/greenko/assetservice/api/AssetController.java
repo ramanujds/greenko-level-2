@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/assets")
 @Slf4j
 public class AssetController {
@@ -35,10 +36,7 @@ public class AssetController {
         this.assetRepository = assetRepository;
     }
 
-    @PostMapping(
-            produces = "application/json, application/xml",
-            consumes = "application/json, application/xml"
-    )
+    @PostMapping
     public Asset registerAsset(@RequestBody Asset asset){
         asset.setAssetId(UUID.randomUUID().toString());
         return assetRepository.save(asset);
