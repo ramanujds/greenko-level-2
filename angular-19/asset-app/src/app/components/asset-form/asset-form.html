@@ -1,0 +1,21 @@
+<h2>Asset Registration Form</h2>
+<form [formGroup]="assetForm" (submit)="registerAsset()">
+  <div class="mb-3">
+    <label for="assetName" class="form-label">Asset Name</label>
+    <input type="text" formControlName="assetName" class="form-control" id="assetName" placeholder="Enter asset name">
+  </div>
+  <div class="mb-3">
+    <label for="assetType" class="form-label">Asset Type</label>
+    <input type="text" formControlName="type" class="form-control" id="assetType" placeholder="Enter asset type">
+  </div>
+  <div class="mb-3">
+    <label for="installedDate" class="form-label">Installed Date</label>
+    <input type="date" formControlName="installedDate" class="form-control" id="installedDate">
+  </div>
+  <div class="mb-3">
+    <label for="location" class="form-label">Location</label>
+    <input type="text" formControlName="location" class="form-control" id="location" placeholder="Enter asset location">
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="assetForm.invalid" >Submit</button>
+
+  {{ assetForm.value | json }}
