@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Asset } from '../model/Asset';
 import { Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AssetsApiService {
 
-  readonly baseUrl = 'http://localhost:8081/api/assets';
+  readonly baseUrl = 'http://localhost:8080/api/assets';
 
   constructor(private assetClient: HttpClient) {}
 

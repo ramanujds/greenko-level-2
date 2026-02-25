@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Asset } from '../../model/Asset';
 import { AssetCard } from "../asset-card/asset-card";
 import { CommonModule } from '@angular/common';
@@ -13,13 +13,14 @@ import { AssetsApiService } from '../../services/assets-api-service';
 })
 export class Assets implements OnInit {
 
-  constructor(protected assetClient:AssetsApiService) {}
+  constructor(protected assetClient:AssetsApiService, protected assetData:AssetsData) {}
 
-  assets: Asset[] = [];
+    
 
   ngOnInit(): void {
     this.assetClient.getAssets().subscribe((response) => {
-      this.assets = response;
+      console.log(response);
+      this.assetData.assets.set(response);
     });
   }
 }
