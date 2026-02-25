@@ -67,4 +67,9 @@ public class AssetController {
         });
     }
 
+    @DeleteMapping("/{assetId}")
+    public void deleteAssetById(@PathVariable String assetId) {
+        assetRepository.deleteById(assetId);
+    }
+
 }
