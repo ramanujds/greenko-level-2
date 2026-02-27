@@ -11,8 +11,7 @@ RUN --mount=type=cache,target=/root/.m2 \
     mvn clean package -DskipTests
 
 # Runtime stage
-FROM amazoncorretto:25-jdk
-RUN yum install curl-minimal -y
+FROM gcr.io/distroless/java25
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
